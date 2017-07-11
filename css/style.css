@@ -39,7 +39,7 @@ h6 {
   padding: .5em .2em;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 725px) {
   h1 {
     display: inline-block;
   }
