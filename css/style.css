@@ -20,6 +20,9 @@ h6 {
   font-size: 1.5em;
 }
 
+.template {
+  display: none;
+}
 
 .main-nav ul {
   display: none;
