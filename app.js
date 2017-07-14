@@ -11,6 +11,7 @@ function Portfolio(rawDataObj) {
 }
 
 Portfolio.prototype.toHtml = function() {
+
   var rawData = {
     title: this.title,
     image: this.image,

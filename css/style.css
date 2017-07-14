@@ -13,6 +13,7 @@ time {
   display: none;
 }
 
+
 h1 {
   margin-left: 2%;
   margin-top: 2%;
@@ -114,4 +115,10 @@ h3 {
     padding: .5em;
     margin-right: 0em;
   }
+}
+
+@media (min-width: 550px) {
+  .column:first-child,
+  .columns:first-child {
+    margin-left: 2.5%; }
 }
