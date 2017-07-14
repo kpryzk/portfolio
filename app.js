@@ -14,7 +14,7 @@ Portfolio.prototype.toHtml = function() {
 
   $newPortfolio.removeClass('template')
 
-  $newPortfolio.find('h6').html(this.title);
+  $newPortfolio.find('h2').html(this.title);
   $newPortfolio.find('a').attr('href', this.path);
   $newPortfolio.find('img').attr('src', this.image);
   $newPortfolio.find('time').attr('datetime', this.publishedOn);
@@ -23,7 +23,6 @@ Portfolio.prototype.toHtml = function() {
 };
 
 rawData.sort(function(a,b) {
-  // REVIEW: Take a look at this sort method; This may be the first time we've seen it.
   return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
 });
 
@@ -34,3 +33,32 @@ rawData.forEach(function(articleObject) {
 Portfolio.all.forEach(function(article) {
   $('#articles').append(article.toHtml());
 });
+
+var articleView ={};
+
+articleView.handleMainNav = function() {
+  $('.tab').on('click', function(){
+    $('.tab-content').hide();
+    $('#' + $(this).attr('data-content')).show();
+  });
+  $('.main-nav .tab:first').click();
+};
+
+// articleView.setTeasers = function() {
+//   $('h3').hide(); // Hide elements beyond the first 2 in any article body.
+//   $('#articles').on('click', '.read-on', function(){
+//     event.preventDefault();
+//     $(this).parent().find('*').fadeIn();
+//   });
+// };
+
+articleView.toggleMaybe = function(){
+  $('h3').hide();
+  $('#articles').on('click', '.read-on', function() {
+    $(this).parent().find('h3').toggle()
+  });
+}
+
+articleView.handleMainNav();
+// articleView.setTeasers();
+articleView.toggleMaybe();
