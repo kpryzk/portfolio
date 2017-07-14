@@ -7,19 +7,27 @@ function Portfolio(rawDataObj) {
   this.image = rawDataObj.image;
   this.path = rawDataObj.path;
   this.publishedOn = rawDataObj.publishedOn;
+  this.body = rawDataObj.body
 }
 
 Portfolio.prototype.toHtml = function() {
-  var $newPortfolio = $('article.template').clone();
 
-  $newPortfolio.removeClass('template')
+  var rawData = {
+    title: this.title,
+    image: this.image,
+    path: this.path,
+    publishedOn: this.publishedOn,
+    body: this.body
+  };
 
-  $newPortfolio.find('h2').html(this.title);
-  $newPortfolio.find('a').attr('href', this.path);
-  $newPortfolio.find('img').attr('src', this.image);
-  $newPortfolio.find('time').attr('datetime', this.publishedOn);
+  var template = $('#handlebarTemplate').html();
+  var compile = Handlebars.compile(template);
 
-  return $newPortfolio;
+  this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
+  this.publishStatus = this.publishedOn ? `published ${this.daysAgo} days ago` : '(draft)';
+
+  var newSection = compile(rawData);
+  $('#articles').append(newSection);
 };
 
 rawData.sort(function(a,b) {
@@ -44,14 +52,6 @@ articleView.handleMainNav = function() {
   $('.main-nav .tab:first').click();
 };
 
-// articleView.setTeasers = function() {
-//   $('h3').hide(); // Hide elements beyond the first 2 in any article body.
-//   $('#articles').on('click', '.read-on', function(){
-//     event.preventDefault();
-//     $(this).parent().find('*').fadeIn();
-//   });
-// };
-
 articleView.toggleMaybe = function(){
   $('h3').hide();
   $('#articles').on('click', '.read-on', function() {
@@ -60,5 +60,4 @@ articleView.toggleMaybe = function(){
 }
 
 articleView.handleMainNav();
-// articleView.setTeasers();
 articleView.toggleMaybe();

@@ -1,6 +1,9 @@
 a {
   text-decoration: none;
 }
+* {
+  outline: 1px orange dotted;
+}
 
 nav {
   float: right;
@@ -8,6 +11,12 @@ nav {
 
 time {
   display: none;
+}
+
+
+h1 {
+  margin-left: 2%;
+  margin-top: 2%;
 }
 
 h2 {
@@ -52,6 +61,35 @@ h3 {
   padding: .5em .2em;
 }
 
+@media (min-width: 900px){
+  header {
+    width: 100%
+    position: fixed;
+  }
+
+  h1 {
+    display: inline-block;
+  }
+
+  .main-nav ul {
+    display: inline-block;
+    padding: 0;
+    list-style: none;
+    text-align: right;
+    /*margin-top: 2%;*/
+  }
+
+  .main-nav:hover ul {
+    display: block;
+  }
+
+  .main-nav li {
+    margin-right: .4em;
+    font-size: 1.5em;
+    padding: .5em .2em;
+  }
+}
+
 @media (min-width: 725px) {
   h1 {
     display: inline-block;
@@ -59,7 +97,7 @@ h3 {
 
   nav {
     float: right;
-    margin-top: .5em;
+    margin-top: 2%;
   }
 
   .icon-menu {
