@@ -1,9 +1,7 @@
 a {
   text-decoration: none;
 }
-* {
-  outline: 1px orange dotted;
-}
+
 
 nav {
   float: right;
@@ -115,10 +113,4 @@ h3 {
     padding: .5em;
     margin-right: 0em;
   }
-}
-
-@media (min-width: 550px) {
-  .column:first-child,
-  .columns:first-child {
-    margin-left: 2.5%; }
 }
