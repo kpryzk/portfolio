@@ -1,7 +1,5 @@
 'use strict';
 
-Portfolio.all = [];
-
 function Portfolio(rawDataObj) {
   this.title = rawDataObj.title;
   this.image = rawDataObj.image;
@@ -10,8 +8,9 @@ function Portfolio(rawDataObj) {
   this.body = rawDataObj.body
 }
 
-Portfolio.prototype.toHtml = function() {
+Portfolio.all = [];
 
+Portfolio.prototype.toHtml = function() {
   var rawData = {
     title: this.title,
     image: this.image,
@@ -29,17 +28,36 @@ Portfolio.prototype.toHtml = function() {
   return compile(this);
 };
 
-rawData.sort(function(a,b) {
-  return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
-});
+Portfolio.loadAll = function(rawData) {
+  rawData.sort(function(a,b) {
+    return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
+  });
 
-rawData.forEach(function(articleObject) {
-  Portfolio.all.push(new Portfolio(articleObject));
-});
+  rawData.forEach(function(articleObject) {
+    Portfolio.all.push(new Portfolio(articleObject));
+  })
+}
 
-Portfolio.all.forEach(function(article) {
-  $('#articles').append(article.toHtml());
-});
+Portfolio.fetchAll = function() {
+  if (localStorage.rawData) {
+    Portfolio.loadAll($.parseJSON(localStorage.rawData));
+    // articleView.initIndexPage();
+    Portfolio.all.forEach(function(article) {
+      $('#articles').append(article.toHtml());
+    });
+  } else {
+    $.getJSON('projects.json')
+      .then(
+      function(data) {
+        console.log(data)
+        localStorage.setItem('rawData', JSON.stringify(data))
+      },
+      function(err) {
+        console.log(err)
+      })
+    Portfolio.fetchAll();
+  }
+}
 
 var articleView ={};
 
