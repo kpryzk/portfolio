@@ -40,17 +40,16 @@ Portfolio.loadAll = function(rawData) {
 
 Portfolio.fetchAll = function() {
   if (localStorage.rawData) {
-    Portfolio.loadAll($.parseJSON(localStorage.rawData));
-    // articleView.initIndexPage();
+    Portfolio.loadAll(JSON.parse(localStorage.rawData));
     Portfolio.all.forEach(function(article) {
       $('#articles').append(article.toHtml());
     });
   } else {
-    $.getJSON('projects.json')
+    $.getJSON('/projects.json')
       .then(
-      function(data) {
-        console.log(data)
-        localStorage.setItem('rawData', JSON.stringify(data))
+      function(rawData) {
+        Portfolio.loadAll(rawData);
+        localStorage.rawData = JSON.stringify(rawData);
       },
       function(err) {
         console.log(err)
