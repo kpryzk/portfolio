@@ -12,6 +12,10 @@ app.get('', bodyParser, function(request, response) {
   response.send('./index.html', {root:'./public'});
 })
 
+app.get('/hello', bodyParser, function(request, response) {
+  response.send('hi');
+});
+
 app.listen(PORT, function() {
   console.log(`Listening on port: "${PORT}"`);
 });
