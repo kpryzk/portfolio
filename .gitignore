@@ -14,4 +14,4 @@ node_modules
 
 # auto-generated tag files
 tags
-githubToken.js
+/public/scripts/model/githubToken.js
