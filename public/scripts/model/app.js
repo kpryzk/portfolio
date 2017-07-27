@@ -25,22 +25,12 @@ var app = app || {};
 
   var articleView ={};
 
-  articleView.handleMainNav = function() {
-    $('.tab').on('click', function(){
-      $('.tab-content').hide();
-      $('#' + $(this).attr('data-content')).show();
-    });
-    $('.main-nav .tab:first').click();
-  };
-
   articleView.toggleMaybe = function(){
     $('h3').hide();
     $('#articles').on('click', '.read-on', function() {
       $(this).parent().find('h3').toggle()
     });
   }
-
-  articleView.handleMainNav();
   articleView.toggleMaybe();
 
   module.Portfolio = Portfolio;

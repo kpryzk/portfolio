@@ -27,8 +27,8 @@
       <nav class="main-nav">
         <span class="icon-menu">:(</span>
         <ul>
-          <li  class="tab" data-content="articles"><a href="#">Portfolio</a></li>
-          <li class="tab" data-content="about"><a href="#"> About</a></li>
+          <li  class="tab" data-content="articles"><a href="/">Portfolio</a></li>
+          <li class="tab" data-content="about"><a href="/about"> About</a></li>
           <li><a href="https://github.com/kpryzk" target="_blank">GitHub</a></li>
         </ul>
       </nav>
@@ -41,12 +41,18 @@
         <section id ="articles" class="tab-content" class="portfolio">
         </section>
       </div>
-      <script src="projectinfo.js"></script>
-      <script type="text/javascript" src="app.js"></script>
+      <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+      <script src="/data/projectinfo.js"></script>
+
+      <script src="/scripts/model/app.js"></script>
+
+      <script src="/scripts/controller/articleController.js"></script>
+      <script src="/scripts/controller/aboutController.js"></script>
+      <script src="/scripts/controller/routes.js"></script>
+
     </main>
     <footer class="container">
       <p><a href=#>kepryzk@gmail.com</a></p>
     </footer>
-    <!-- <script> Portfolio.fetchAll() </script> -->
   </body>
 </html>
