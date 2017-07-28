@@ -13,3 +13,7 @@ githubToken.js
 node_modules
 
 /*.env
+
+# auto-generated tag files
+tags
+/public/scripts/model/githubToken.js

@@ -6,18 +6,33 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 
     <script type="text/x-handlebars-template" id="handlebarTemplate">
         <div class="one-third column category">
           <a href="{{path}}" class="read-on"><p><img class="u-max-full-width" src="{{image}}">
             <br><h2>{{title}}</h2></a>
-            <br><h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h3></p>
+            <br><h3>{{body}}</h3></p>
             <time pubdate datetime="{{publishedOn}}">{{publishedOn}}</time>
         </div>
       </article>
     </script>
+
+    <script id="repo-template" type="text/x-handlebars-template">
+      <li>
+        <a href="{{html_url}}" target="_blank">
+          <h3>{{ name }}</h3>
+        </a>
+        <p>Description: {{ description }}</p>
+        <p>Language: {{ language }}</p>
+        <p>Created: {{ created_at }}</p>
+        <p>Last updated: {{ updated_at }}</p>
+        {{#if watchers_count}}
+          <p>{{watchers_count}} watching this repo</p>
+        {{/if}}
+      </li>
+    </script>
+
 
     <title>kpryzk portfolio</title>
   </head>
@@ -27,8 +42,8 @@
       <nav class="main-nav">
         <span class="icon-menu">:(</span>
         <ul>
-          <li  class="tab" data-content="articles"><a href="#">Portfolio</a></li>
-          <li class="tab" data-content="about"><a href="#"> About</a></li>
+          <li  class="tab" data-content="articles"><a href="/">Portfolio</a></li>
+          <li class="tab" data-content="about"><a href="/about"> About</a></li>
           <li><a href="https://github.com/kpryzk" target="_blank">GitHub</a></li>
         </ul>
       </nav>
@@ -37,15 +52,30 @@
       <div class="row">
         <section id="about" class="tab-content">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <ul></ul>
         </section>
         <section id ="articles" class="tab-content" class="portfolio">
         </section>
       </div>
-      <script type="text/javascript" src="app.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+      <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+      <script src="scripts/model/githubToken.js"></script>
+
+      <script src="/data/projectinfo.js"></script>
+
+      <script src="/scripts/model/app.js"></script>
+      <script src="/scripts/model/repo.js"></script>
+
+      <script src="/scripts/view/repoView.js"></script>
+
+      <script src="/scripts/controller/articleController.js"></script>
+      <script src="/scripts/controller/aboutController.js"></script>
+      <script src="/scripts/controller/routes.js"></script>
+
     </main>
     <footer class="container">
       <p><a href=#>kepryzk@gmail.com</a></p>
     </footer>
-    <script> Portfolio.fetchAll() </script>
   </body>
 </html>
