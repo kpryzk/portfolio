@@ -11,7 +11,8 @@ var app = app || {};
       url: 'https://api.github.com/user/repos?type=owner',
       method: 'GET',
       headers: {
-        'Authorization': `token ${GITHUB_TOKEN}`
+        'Authorization': `token ${process.env.GITHUB_TOKEN}`
+
       }
     })
     .then(
